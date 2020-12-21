@@ -5,7 +5,7 @@
         <table class="table align-middle">
         <thead>
             <tr>
-            <th class="text-center" colspan="3">Usuário<th>
+            <th class="text-center" colspan="4">Usuário<th>
             </tr>
             <tr>
             <th scope="col">#</th>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -20,11 +21,16 @@ class PostController extends Controller
         ]);
     }
 
-    public function showAllPosts(Post $post){
+    public function showAllPosts(){
 
-        return view ('page.all.posts',[
-            'post'=>$post
-        ]);
+        $posts = DB::table('post')
+            ->join('users', 'users.id', '=', 'post.user_id')
+            ->select('post.*', 'users.name')
+            ->get();
+
+            return view ('page.all.posts', [
+                    'posts'=>$posts,
+            ]);
     }
 
     public function showForm(){

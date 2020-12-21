@@ -58,7 +58,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function showAllUsers(User $user)
+    public function showAllUsers()
     {
 
         $users = DB::table('users')

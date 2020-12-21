@@ -5,19 +5,20 @@
         <table class="table align-middle">
         <thead>
             <tr>
-            <th class="text-center" colspan="3">Artigos<th>
+            <th class="text-center" colspan="4">Artigos<th>
             </tr>
             <tr>
+            <th scope="col">Autor</th>
             <th scope="col">Título</th>
             <th scope="col">Sub Título</th>
             <th scope="col">Conteúdo</th>
-
             </tr>
         </thead>
-        @foreach($post as $post)
+        @foreach($posts as $post)
         <tbody>
             <tr>
-            <th>{{$post->title}}</th>
+            <td>{{$post->name}}</td>
+            <td>{{$post->title}}</td>
             <td>{{$post->subtitle}}</td>
             <td>{{$post->content}}</td>
             </tr>
