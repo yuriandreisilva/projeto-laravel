@@ -45,19 +45,24 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Address $address)
+    public function showAddres(Address $address)
     {
-        if($address){
-            echo "<h1> Endereço:</h1>";
-            echo "<p>Endereço completo: {$address->street}, {$address->number} - {$address->city}/{$address->state}";
-        }
-
         $user = $address->user()->first();
 
-        if ($address){
-            echo "<h1> Dados usuaŕio:</h1>";
-            echo "<p>Nome: {$user->name} E-mail: {$user->email}";
-        }
+        return view ('page.individual.address',[
+            'user'=>$user,
+            'address'=>$address
+        ]);
+    }
+
+    public function showAllAddress()
+    {
+        $addresses = Address::all();
+
+        return view ('page.all.addresses',[
+            'addresses'=>$addresses,
+
+        ]);
     }
 
     /**

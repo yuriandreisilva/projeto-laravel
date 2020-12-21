@@ -17,17 +17,8 @@ class AddressSeeder extends Seeder
      */
     public function run()
     {
-        function total(){
-            $users = Post::withCount('author')->get();
-
-            foreach ($users as $user) {
-                $maxUsers =+1;
-            }
-        return $maxUsers;
-        }
-
         DB::table('addresses')->insert([
-            'user_id' => mt_rand(1,total()),
+            'user_id' => mt_rand(1,3),
             'street' => Str::random(10),
             'number' => Str::random(10),
             'city' => Str::random(10),

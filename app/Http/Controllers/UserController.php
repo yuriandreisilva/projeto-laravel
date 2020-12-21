@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+
 
 class UserController extends Controller
 {
@@ -44,37 +46,29 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function showUser(User $user)
     {
         $address = $user->address()->first();
         $post = $user->post()->get();
 
-        return view ('infos.user',[
+        return view ('page.individual.user',[
             'user'=>$user,
             'address'=>$address,
             'post'=>$post,
         ]);
+    }
 
-        // //address não precisa ser parametrizado por conta do namespace
+    public function showAllUsers(User $user)
+    {
 
+        $users = DB::table('users')
+            ->join('addresses', 'users.id', '=', 'addresses.user_id')
+            ->select('users.id', 'users.name', 'users.email', 'addresses.city')
+            ->get();
 
-        // if($address){
-        //     echo "<h1>Endereço:</h1>";
-        //     echo "<p>Endereço completo: {$address->street}, {$address->number} - {$address->city}/{$address->state}";
-        // }
-
-        // // get() para pegar todos
-        //
-        // //$posts = DB::table('post')->get();
-
-        // if($post){
-        //     echo "<h1>Artigos:</h1>";
-        //     foreach ($post as $post){
-        //     echo "<p>#{$post->id},{$post->title}, {$post->subtitle}, {$post->content}</p>";
-        //     }
-        // }
-        // Confirmar com Gui
-        // dd($user);
+            return view ('page.all.users', [
+                    'users'=>$users,
+            ]);
     }
 
     /**

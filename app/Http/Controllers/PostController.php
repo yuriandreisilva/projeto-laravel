@@ -8,36 +8,27 @@ use Illuminate\Http\RedirectResponse;
 
 class PostController extends Controller
 {
-    public function show(Post $post){
-        // get() para pegar todos
-        //$posts = DB::table('post')->get();
-
-        echo "<h1>Artigo:</h1>";
-        echo "<p>#{$post->id},{$post->title}, {$post->subtitle}, {$post->content}</p>";
+    public function showPost(Post $post){
 
         $user = $post->author()->first();
-
-
-
-        if($user){
-            echo "<h1>Autor:</h1>";
-            echo "<p>Nome: {$user->name} E-mail: {$user->email}";
-        }
-
         $categories = $post->categories()->get();
 
-        if($categories){
-            echo "<h1>Categorias:</h1>";
-
-            foreach($categories as $category){
-                echo "<p>#{$category->id}, {$category->title}";
-            }
-        }
-
+        return view ('page.individual.post',[
+            'post'=>$post,
+            'categories'=>$categories,
+            'user'=>$user
+        ]);
     }
 
-    public function viewForm(){
-        return view('form.index');
+    public function showAllPosts(Post $post){
+
+        return view ('page.all.posts',[
+            'post'=>$post
+        ]);
+    }
+
+    public function showForm(){
+        return view('form.registerPost');
     }
 
     public function debug(Request $request){
@@ -50,12 +41,14 @@ class PostController extends Controller
         //$post->create($request->except(['_token']));
 
         // 2a Forma
+        $post->user_id = mt_rand(1,3);
+        // GAMBI SÓ PRA INSERIR, EDITAR FRONT PRA BUSCAR ALUNOS E SELECIONAR UM!!
         $post->title = $request->title;
         $post->subtitle = $request->subtitle;
         $post->content = $request->content;
         $post->save();
 
-        return redirect('/');
+        return redirect('/artigo');
 
     }
 

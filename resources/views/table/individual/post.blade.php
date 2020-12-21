@@ -14,7 +14,6 @@
 
             </tr>
         </thead>
-         @foreach ($post as $post)
         <tbody>
             <tr>
             <th>{{$post->title}}</th>
@@ -22,7 +21,6 @@
             <td>{{$post->content}}</td>
             </tr>
         </tbody>
-        @endforeach
         </table>
     </div>
 </div>

@@ -1,13 +1,12 @@
 @extends ('layouts.header')
 @section('title')
-Home
+Categorias
 @endsection
 
     <body id="page-top">
 
-        @extends('tables.post')
-        @extends('tables.address')
-        @extends('tables.user')
+        @extends('table.individual.category')
+        @extends('table.all.posts')
 
     </body>
 </html>

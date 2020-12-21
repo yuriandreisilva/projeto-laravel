@@ -41,12 +41,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function user(){
+        return $this->hasMany(User::class);
+    }
+
     // Não precisamos importar address por conta do namespace
     public function address(){
         // return $this->hasOne(related: Address::class, foreignKey:'user', localKey:'id');
         // Laravel já pega automaticamente o campo de referência (chave estrangeira)
         // passando aqui para entender e reforçar
         return $this->hasOne(Address::class);
+    }
+
+    public function addresses(){
+        // return $this->hasOne(related: Address::class, foreignKey:'user', localKey:'id');
+        // Laravel já pega automaticamente o campo de referência (chave estrangeira)
+        // passando aqui para entender e reforçar
+        return $this->hasMany(Address::class);
     }
 
     public function post(){

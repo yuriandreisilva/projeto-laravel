@@ -1,6 +1,6 @@
 @extends ('layouts.header')
 @section('title')
-Home
+Registar Artigo
 @endsection
     </head>
     <body id="page-top">
@@ -38,7 +38,10 @@ Home
                     <div id="success"></div>
                     <div class="form-group">
                     <button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Enviar</button>
+                    {{-- Confirmar com Gui, neste caso se pode ser usado âncora, tag: <a> --}}
+                    <a class="btn btn-primary btn-xl" id="sendMessageButton" type="submit" href="{{ route('welcome') }}">Voltar</a>
                     </div>
+
                 </form>
             </div>
         </div>
