@@ -5,8 +5,8 @@ Categorias
 
     <body id="page-top">
 
-        @extends('table.individual.category')
         @extends('table.all.posts')
+        @extends('table.individual.category')
 
     </body>
 </html>

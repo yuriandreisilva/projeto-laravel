@@ -4,22 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
     public function showCategory(Category $category){
 
-        echo "<h1>Categorias:</h1>";
-        echo "<p>#{$category->id}, {$category->title}</p>";
+        return view ('page.individual.category',[
+            'category'=>$category,
+        ]);
+    }
 
-        $posts = $category->posts()->get();
+    public function showAllCategories(){
 
-        if($posts){
-            echo "<h1>Artigo:</h1>";
+        $categories = DB::table('categories')
+        ->select('categories.*')
+        ->get();
 
-            foreach($posts as $post){
-                echo "<p>#{$post->id},{$post->title}, {$post->subtitle}, {$post->content}</p>";
-            }
-        }
+        return view ('page.all.categories',[
+            'categories'=>$categories
+        ]);
     }
 }

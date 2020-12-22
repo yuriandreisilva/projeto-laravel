@@ -28,6 +28,6 @@ Route::get('/artigo', [PostController::class, 'showAllPosts'])->name('showPosts'
 Route::get('/artigo/{post}', [PostController::class, 'showPost']);
 
 
-// Route::get('/categoria', [CategoryController::class, 'showAllCategories']);
+Route::get('/categoria', [CategoryController::class, 'showAllCategories'])->name('showCategories');
 Route::get('/categoria/{category}', [CategoryController::class, 'showCategory']);
 

@@ -5,8 +5,15 @@ Artigos
 
     <body id="page-top">
 
-        @extends('table.all.posts')
+    @include ('layouts.nav')
+    @include('table.all.posts')
 
+    <div class="container">
+        <div class="form-group">
+        <a class="btn btn-primary btn-xl" id="sendMessageButton" type="submit" href="{{ route('newPost') }}">Novo</button>
+        {{-- Confirmar com Gui, neste caso se pode ser usado âncora, tag: <a> --}}
+        <a class="btn btn-primary btn-xl" id="sendMessageButton" type="submit" href="{{ route('welcome') }}">Voltar</a>
+        </div>
+    </div>
     </body>
-    @extends ('layouts.nav')
 </html>

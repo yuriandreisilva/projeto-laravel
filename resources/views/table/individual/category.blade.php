@@ -14,7 +14,6 @@
 
             </tr>
         </thead>
-        @foreach($categories as $category)
         <tbody>
             <tr>
             <th>{{$category->id}}</th>
@@ -22,7 +21,6 @@
             <td>{{$category->description}}</td>
             </tr>
         </tbody>
-        @endforeach
         </table>
     </div>
 </div>
